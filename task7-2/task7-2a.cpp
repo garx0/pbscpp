@@ -5,6 +5,7 @@
 constexpr uint64_t N_ITER = 200;
 constexpr int map_size = 16384-1;
 
+// замеры см в комментах к коду
 int main() {
     // замер с hint
     auto start = std::chrono::system_clock::now();
@@ -17,6 +18,8 @@ int main() {
     }
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
+
+    // -------- TIME WITHOUT HINT --------
     // 2.5s without opt flag
     // 0.3s with -O3
     std::cout << "w/o hint: " << elapsed_seconds.count() << "s\n";
@@ -33,6 +36,8 @@ int main() {
     }
     end = std::chrono::system_clock::now();
     elapsed_seconds = end-start;
+
+    // -------- TIME WITH HINT --------
     // 0.8s without opt flag
     // 0.1s with -03
     std::cout << "w/ hint: " << elapsed_seconds.count() << "s\n";

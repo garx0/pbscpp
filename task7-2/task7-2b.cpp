@@ -4,6 +4,8 @@
 
 constexpr uint64_t N_ITER = 5000000;
 constexpr int map_size = 65536-1;
+
+// замеры см в комментах к коду
 int main() {
     std::map<int, int> m;
     decltype(m.insert({1,1}).first) inserted;
@@ -20,6 +22,8 @@ int main() {
     }
     auto end = std::chrono::system_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
+
+    // -------- TIME WITHOUT HINT --------
     // 3.6s without opt flag
     // 0.5s with -O3
     std::cout << "w/o hint: " << elapsed_seconds.count() << "s\n";
@@ -32,6 +36,8 @@ int main() {
     }
     end = std::chrono::system_clock::now();
     elapsed_seconds = end-start;
+
+    // -------- TIME WITH HINT --------
     // 0.4s without opt flag
     // 0.02s with -03
     std::cout << "w/ hint: " << elapsed_seconds.count() << "s\n";
